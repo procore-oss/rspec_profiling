@@ -1,7 +1,7 @@
 require "rspec_profiling/vcs/svn"
 
 module RspecProfiling
-  describe VCS::Svn do
+  RSpec.describe VCS::Svn do
     describe "#branch" do
       it "calls Git to get the current branch" do
         expect(subject.branch).to be_nil

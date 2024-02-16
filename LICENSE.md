@@ -1,4 +1,5 @@
-Copyright (c) 2014 Ben Eddy
+Copyright (c) 2014-2024 Ben Eddy
+Copyright (c) 2024 Procore Technologies, Inc.
 
 MIT License
 

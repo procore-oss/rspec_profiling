@@ -1,0 +1,8 @@
+test:
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  host: <%= ENV['POSTGRES_HOST'] %>
+  username: <%= ENV['POSTGRES_DB_USERNAME'] %>
+  password: <%= ENV['POSTGRES_DB_PASSWORD'] %>
+  database: rspec_profiling_test
