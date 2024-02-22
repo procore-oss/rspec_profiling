@@ -218,3 +218,17 @@ To remove the results database, run `bundle exec rake rspec_profiling:uninstall`
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Local Development
+
+Local tools needed:
+
+- docker
+- docker-compose
+- ruby
+
+To run the specs:
+
+```bash
+make spec
+```
