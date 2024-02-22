@@ -3,7 +3,7 @@ require "rspec_profiling/collectors/sql"
 
 module RspecProfiling
   module Collectors
-    describe SQL do
+    RSpec.describe SQL do
       before(:all) { described_class.install }
       after(:all)  { described_class.uninstall }
 
@@ -13,7 +13,7 @@ module RspecProfiling
 
         before do
           collector.insert({
-            branch: "master",
+            branch: "main",
             commit_hash: "ABC123",
             date: "Thu Dec 18 12:00:00 2012",
             file: "/some/file.rb",
@@ -34,7 +34,7 @@ module RspecProfiling
         end
 
         it "records the branch name" do
-          expect(result.branch).to eq "master"
+          expect(result.branch).to eq "main"
         end
 
         it "records the commit_hash SHA" do

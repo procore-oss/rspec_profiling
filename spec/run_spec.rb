@@ -5,7 +5,7 @@ require "time"
 require "ostruct"
 
 module RspecProfiling
-  describe Run do
+  RSpec.describe Run do
     def simulate_query(sql)
       ActiveSupport::Notifications.instrument("sql.active_record", "sql", 100, 200, 1, {
         sql: sql
@@ -57,7 +57,7 @@ module RspecProfiling
       end
 
       it "records the branch name" do
-        expect(result.branch).to eq "master"
+        expect(result.branch).to eq "main"
       end
 
       it "records the commit_hash SHA" do
@@ -127,7 +127,7 @@ module RspecProfiling
 
     class VcsDouble
       def branch
-        "master"
+        "main"
       end
 
       def sha

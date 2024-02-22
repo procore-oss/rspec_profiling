@@ -1,11 +1,11 @@
 require "rspec_profiling/vcs/git"
 
 module RspecProfiling
-  describe VCS::Git do
+  RSpec.describe VCS::Git do
     describe "#branch" do
       it "calls Git to get the current branch" do
-        expect(subject).to receive(:`).with("git rev-parse --abbrev-ref HEAD").and_return("master\n")
-        expect(subject.branch).to eq "master"
+        expect(subject).to receive(:`).with("git rev-parse --abbrev-ref HEAD").and_return("main\n")
+        expect(subject.branch).to eq "main"
       end
     end
 

@@ -5,6 +5,7 @@ with interesting attributes. For example, find the slowest specs, or the
 spec which issues the most queries.
 
 Collected attributes include:
+
 - git commit SHA (or SVN revision) and date
 - example file, line number and description
 - example status (i.e. passed or failed)
@@ -21,32 +22,32 @@ RspecProfiling should work with Rails >= 3.2 and RSpec >= 2.14.
 
 Add this line to your application's Gemfile:
 
-```
+```ruby
 gem 'rspec_profiling'
 ```
 
 And then execute:
 
-```
+```bash
 bundle
 ```
 
 Require the gem to your `spec_helper.rb`.
 
-```
+```ruby
 require "rspec_profiling/rspec"
 ```
 
 Lastly, run the installation rake tasks to initialize an empty database in
 which results will be collected.
 
-```
+```bash
 bundle exec rake rspec_profiling:install
 ```
 
-If you are planning on using `sqlite` or `pg` ensure to add the depency to your gemfile
+If you are planning on using `sqlite` or `pg` ensure to add the dependency to your gemfile
 
-```
+```ruby
   gem 'sqlite', require: false
   gem 'pg', require: false
 ```
@@ -89,7 +90,7 @@ RspecProfiling.configure do |config|
 end
 ```
 
-Note that custom events are only currenly reported by the CSV collector.
+Note that custom events are only currently reported by the CSV collector.
 
 #### Custom Event Recording
 
@@ -125,7 +126,7 @@ end
 You can review results by running the RspecProfiling console.
 The console has a preloaded `results` variable.
 
-```
+```bash
 bundle exec rake rspec_profiling:console
 
 > results.count
@@ -134,14 +135,14 @@ bundle exec rake rspec_profiling:console
 
 You can find the spec that runs the most queries:
 
-```
+```ruby
 > results.order(:query_count).last.to_s
 => "Updating my account - ./spec/features/account_spec.rb:15"
 ```
 
 Or find the spec that takes the most time:
 
-```
+```ruby
 > results.order(:time).last.to_s
 => "Updating my account - ./spec/features/account_spec.rb:15"
 ```
@@ -216,16 +217,4 @@ To remove the results database, run `bundle exec rake rspec_profiling:uninstall`
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
-
-## About Breakwater
-
-![Breakwater Logo](https://images.squarespace-cdn.com/content/5d084fe43b0b620001239437/1565926359217-2LQ1BOFAO5846OAYAGZV/breakwater.png?content-type=image%2Fpng)
-
-Breakwater builds exciting web and mobile apps in Louisville, CO. Our work powers a wide variety of businesses with many different needs. We love open source software, and we're proud to contribute where we can. Interested to learn more? [Contact us today](https://www.breakwaterltd.com/contact).
-
-This project is maintained by Breakwater. The names and logos of Breakwater are fully owned and copyright Breakwater Limited.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
