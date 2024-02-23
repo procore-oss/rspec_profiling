@@ -1,5 +1,10 @@
 # RspecProfiling
 
+[![Test](https://github.com/procore-oss/rspec_profiling/actions/workflows/test.yaml/badge.svg?branch=main)](https://github.com/procore-oss/rspec_profiling/actions/workflows/test.yaml)
+[![Gem Version](https://badge.fury.io/rb/rspec_profiling.svg)](https://badge.fury.io/rb/rspec_profiling)
+[![Discord](https://img.shields.io/badge/Chat-EDEDED?logo=discord)](https://discord.gg/PbntEMmWws) 
+
+
 Collects profiles of RSpec test suites, enabling you to identify specs
 with interesting attributes. For example, find the slowest specs, or the
 spec which issues the most queries.
