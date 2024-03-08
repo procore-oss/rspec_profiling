@@ -10,6 +10,7 @@ module RspecProfiling
         date
         file
         line_number
+        owner_tag
         description
         status
         exception

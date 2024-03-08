@@ -1,4 +1,9 @@
 require "benchmark"
+require "rspec_profiling/vcs/git"
+require "rspec_profiling/vcs/svn"
+require "rspec_profiling/vcs/git_svn"
+require "rspec_profiling/collectors/csv"
+require "rspec_profiling/collectors/json"
 
 module RspecProfiling
   class Example
@@ -50,6 +55,10 @@ module RspecProfiling
       execution_result.run_time
     end
 
+    def owner_tag
+      ownership_for_file(metadata[:file_path])
+    end
+
     def query_count
       counts[:query_count]
     end
@@ -97,6 +106,8 @@ module RspecProfiling
 
     attr_reader :example, :counts
 
+    OWNERSHIP_REGEX = /(^#\s*#{RspecProfiling.config.magic_comment}:\s*)\K(?<#{RspecProfiling.config.magic_comment}>.*$)/
+
     def execution_result
       @execution_result ||= begin
         result = example.execution_result
@@ -111,6 +122,33 @@ module RspecProfiling
 
     def verbose_record_event?(event_name)
       metadata[:record_events].to_a.include?(event_name)
+    end
+
+    def ownership_for_file(file_path)
+      return nil if RspecProfiling.config.magic_comment.empty?
+
+      comments = top_comments_from_file(file_path)
+      matching_line = comments.detect { |line| line.match?(OWNERSHIP_REGEX) }
+      extract_ownership(matching_line) if matching_line
+    end
+
+    def top_comments_from_file(file_path)
+      with_file(file_path) do |f|
+        f.take_while { |line| line.start_with?('#', "\n") }
+      end
+    end
+
+    def with_file(file_path)
+      if File.exist?(file_or_path)
+        File.open(file_or_path)
+      else
+        puts "File not found: #{file_or_path}"
+        []
+      end
+    end
+
+    def extract_ownership(matching_line)
+      matching_line.match(OWNERSHIP_REGEX)[RspecProfiling.config.magic_comment.to_sym]
     end
   end
 end
