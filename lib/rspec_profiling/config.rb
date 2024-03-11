@@ -9,7 +9,7 @@ module RspecProfiling
       vcs:        RspecProfiling::VCS::Git,
       table_name: 'spec_profiling_results',
       events:     [],
-      magic_comment: '',
+      magic_comment: 'team',
       additional_data: {}
     })
   end
