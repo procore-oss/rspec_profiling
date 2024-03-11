@@ -124,13 +124,9 @@ module RspecProfiling
 
     def ownership_for_file(file_path)
       return nil if RspecProfiling.config.magic_comment.empty?
-      puts "Magic comment: #{RspecProfiling.config.magic_comment}"
       ownership_regex = /(^#\s*#{RspecProfiling.config.magic_comment}:\s*)\K(?<#{RspecProfiling.config.magic_comment}>.*$)/.freeze
       comments = top_comments_from_file(file_path)
-      puts "Comments: #{comments}"
-      puts "REGEX: #{ownership_regex}"
       matching_line = comments.detect { |line| line.match?(ownership_regex) }
-      puts "Matching line: #{matching_line}"
       extract_ownership(matching_line, ownership_regex) if matching_line
     end
 
