@@ -139,10 +139,10 @@ module RspecProfiling
     end
 
     def with_file(file_path)
-      if File.exist?(file_or_path)
-        File.open(file_or_path)
+      if File.exist?(file_path)
+        File.open(file_path)
       else
-        puts "File not found: #{file_or_path}"
+        puts "File not found: #{file_path}"
         []
       end
     end
