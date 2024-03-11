@@ -128,7 +128,10 @@ module RspecProfiling
       return nil if RspecProfiling.config.magic_comment.empty?
       puts "Magic comment: #{RspecProfiling.config.magic_comment}"
       comments = top_comments_from_file(file_path)
+      puts "Comments: #{comments}"
+      puts "REGEX: #{OWNERSHIP_REGEX}"
       matching_line = comments.detect { |line| line.match?(OWNERSHIP_REGEX) }
+      puts "Matching line: #{matching_line}"
       extract_ownership(matching_line) if matching_line
     end
 
