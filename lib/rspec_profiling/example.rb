@@ -106,8 +106,6 @@ module RspecProfiling
 
     attr_reader :example, :counts
 
-    OWNERSHIP_REGEX = /(^#\s*#{RspecProfiling.config.magic_comment}:\s*)\K(?<#{RspecProfiling.config.magic_comment}>.*$)/.freeze
-
     def execution_result
       @execution_result ||= begin
         result = example.execution_result
@@ -127,12 +125,13 @@ module RspecProfiling
     def ownership_for_file(file_path)
       return nil if RspecProfiling.config.magic_comment.empty?
       puts "Magic comment: #{RspecProfiling.config.magic_comment}"
+      OWNERSHIP_REGEX = /(^#\s*#{RspecProfiling.config.magic_comment}:\s*)\K(?<#{RspecProfiling.config.magic_comment}>.*$)/.freeze
       comments = top_comments_from_file(file_path)
       puts "Comments: #{comments}"
       puts "REGEX: #{OWNERSHIP_REGEX}"
       matching_line = comments.detect { |line| line.match?(OWNERSHIP_REGEX) }
       puts "Matching line: #{matching_line}"
-      extract_ownership(matching_line) if matching_line
+      extract_ownership(matching_line, OWNERSHIP_REGEX) if matching_line
     end
 
     def top_comments_from_file(file_path)
@@ -150,8 +149,8 @@ module RspecProfiling
       end
     end
 
-    def extract_ownership(matching_line)
-      matching_line.match(OWNERSHIP_REGEX)[RspecProfiling.config.magic_comment.to_sym]
+    def extract_ownership(matching_line, regex)
+      matching_line.match(regex)[RspecProfiling.config.magic_comment.to_sym]
     end
   end
 end
