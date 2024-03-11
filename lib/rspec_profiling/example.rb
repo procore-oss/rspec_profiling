@@ -128,10 +128,10 @@ module RspecProfiling
       ownership_regex = /(^#\s*#{RspecProfiling.config.magic_comment}:\s*)\K(?<#{RspecProfiling.config.magic_comment}>.*$)/.freeze
       comments = top_comments_from_file(file_path)
       puts "Comments: #{comments}"
-      puts "REGEX: #{OWNERSHIP_REGEX}"
-      matching_line = comments.detect { |line| line.match?(OWNERSHIP_REGEX) }
+      puts "REGEX: #{ownership_regex}"
+      matching_line = comments.detect { |line| line.match?(ownership_regex) }
       puts "Matching line: #{matching_line}"
-      extract_ownership(matching_line, OWNERSHIP_REGEX) if matching_line
+      extract_ownership(matching_line, ownership_regex) if matching_line
     end
 
     def top_comments_from_file(file_path)
