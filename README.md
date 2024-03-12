@@ -89,7 +89,7 @@ end
 
 #### Custom Ownership Tracking
 
-If the repo you are running the profiler on has many teams working on it, you can use the `magic_comment` option to specify a comment to scan the top of files for to enable ownership tracking. In the example below,
+If the repo you are running the profiler on has many teams working on it, you can use the `magic_comment` option to specify a comment at the top of files to scan for ownership tracking.  In the example below,
 the profiler will look for `#team: <owner>` comments at the top of each file and add <owner> to the results.
 The default is `team` but can be configured to any comment you want.
 
