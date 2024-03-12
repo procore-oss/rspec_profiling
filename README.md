@@ -216,7 +216,7 @@ end
 - `table_name` - the database table name in which results are stored
 - `csv_path` - the directory in which CSV files are dumped
 - `collector` - collector to use
-- `magic_comment` - comment to scan top of files for to enable ownership tracking (EX: `#team: tooling`)
+- `magic_comment` - comment to scan top of files to enable ownership tracking (EX: `#team: tooling`)
 
 ### Usage in a script
 
