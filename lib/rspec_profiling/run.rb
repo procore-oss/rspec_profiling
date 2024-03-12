@@ -42,6 +42,7 @@ module RspecProfiling
         status:        @current_example.status,
         exception:     @current_example.exception,
         time:          @current_example.time,
+        owner_tag:     @current_example.owner_tag,
         query_count:   @current_example.query_count,
         query_time:    @current_example.query_time,
         request_count: @current_example.request_count,

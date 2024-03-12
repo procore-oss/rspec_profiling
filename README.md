@@ -87,6 +87,18 @@ RspecProfiling.configure do |config|
 end
 ```
 
+#### Custom Ownership Tracking
+
+If the repo you are running the profiler on has many teams working on it, you can use the `magic_comment` option to specify a comment at the top of files to scan for ownership tracking.  In the example below,
+the profiler will look for `#team: <owner>` comments at the top of each file and add <owner> to the results.
+The default is `team` but can be configured to any comment you want.
+
+```Ruby
+RspecProfiling.configure do |config|
+  config.magic_comment = 'team'
+end
+```
+
 #### Custom Event Subscriptions
 
 ```Ruby
@@ -204,6 +216,7 @@ end
 - `table_name` - the database table name in which results are stored
 - `csv_path` - the directory in which CSV files are dumped
 - `collector` - collector to use
+- `magic_comment` - comment to scan top of files to enable ownership tracking (EX: `#team: tooling`)
 
 ### Usage in a script
 
