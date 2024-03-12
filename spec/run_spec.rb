@@ -35,6 +35,7 @@ module RspecProfiling
           record_events: %w[custom]
         })
       end
+      let(:file_with_team) { StringIO.new("# frozen_string_literal: true\n# team: apples\n# Bogus comment\nnot a comment\n") }
 
       def simulate_test_suite_run
         run.start
@@ -48,6 +49,8 @@ module RspecProfiling
       end
 
       before do
+        allow(File).to receive(:exist?).and_return(true)
+        allow(File).to receive(:open).and_return(file_with_team)
         stub_const("ActiveSupport::Notifications", Notifications.new)
         simulate_test_suite_run
       end
@@ -106,6 +109,10 @@ module RspecProfiling
 
       it "records the custom event events" do
         expect(result.event_events["custom"]).to eq [{"data"=>{"key"=>"value"}, "name"=>"custom"}]
+      end
+
+      it "records the magic comment" do
+        expect(result.owner_tag).to eq "apples"
       end
     end
 
