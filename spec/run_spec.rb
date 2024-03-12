@@ -111,7 +111,7 @@ module RspecProfiling
         expect(result.event_events["custom"]).to eq [{"data"=>{"key"=>"value"}, "name"=>"custom"}]
       end
 
-      it "records the magic comment" do
+      it "records the owner comment" do
         expect(result.owner_tag).to eq "apples"
       end
     end
