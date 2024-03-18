@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Profile RSpec test suites}
   spec.homepage      = "https://github.com/procore-oss/rspec_profiling"
   spec.license       = "MIT"
+  spec.required_ruby_version = Gem::Requirement.new('>= 3.0')
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
